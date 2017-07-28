@@ -78,6 +78,6 @@ public class TracingConfiguration {
                 .logger(new Logger.ErrorLogger()).logLevel(Logger.Level.BASIC)
                 .decoder(new JacksonDecoder())
                 .target(HolaService.class, "http://hola:8080/",
-                        () -> Collections.singletonList("Hola response (fallback)"));
+                        (String tmEnlistUri) -> Collections.singletonList("Hola response (fallback)"));
     }
 }

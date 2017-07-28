@@ -16,13 +16,14 @@
  */
 package com.redhat.developers.msa.ola;
 
+import feign.Param;
 import feign.RequestLine;
 
 import java.util.List;
 
 public interface HolaService {
 
-	@RequestLine("GET /api/hola-chaining")
-	public List<String> hola();
+	@RequestLine("GET /api/hola-chaining?tmEnlistUri={tmEnlistUri}")
+	public List<String> hola(@Param("tmEnlistUri") String tmEnlistUri);
 
 }

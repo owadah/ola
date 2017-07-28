@@ -23,3 +23,18 @@ Deploy the application in OpenShift
 
 		mvn clean package docker:build fabric8:json fabric8:apply
 
+
+ochaloup commands
+-----------------
+
+```
+  Here we go with
+    * `mvn package && oc start-build ola --from-dir=. --follow`
+
+  To check how that works
+    * `curl -X GET http://ola-helloworld-msa-restat.192.168.99.100.nip.io/api/ola-chaining`
+
+  Usable commands
+    * `oc logs -f `oc get pods | grep ^ola | grep Running | awk '{ print $1 }'``
+```
+
