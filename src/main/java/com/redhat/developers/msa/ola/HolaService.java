@@ -16,13 +16,18 @@
  */
 package com.redhat.developers.msa.ola;
 
-import feign.RequestLine;
-
 import java.util.List;
+
+import feign.Headers;
+import feign.Param;
+import feign.RequestLine;
+import io.narayana.lra.client.LRAClient;
+
 
 public interface HolaService {
 
 	@RequestLine("GET /api/hola-chaining")
-	public List<String> hola();
+	@Headers(LRAClient.LRA_HTTP_HEADER + ": {xlra}")
+	public List<String> hola(@Param("xlra") String xlra);
 
 }

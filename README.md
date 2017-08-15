@@ -23,3 +23,23 @@ Deploy the application in OpenShift
 
 		mvn package fabric8:deploy
 
+Running with LRA
+----------------
+
+Coordinator needs to  be started
+
+       java -jar target/lra-coordinator-swarm.jar -Dswarm.port.offset=100
+
+To start this ola MSA
+
+       mvn clean package && java -Dlra.http.host=localhost -Dlra.http.port=8180 -Dhola.port=8282 -Dhola.host=localhost -jar target/ola.jar --server.port=8181
+
+To show trace/debug messages for the Spring Boot: `--trace` or `--debug`
+
+To debug with agent:
+
+       java -agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=n -Dlra.http.host=localhost -Dlra.http.port=8180 -Dhola.port=8282 -Dhola.host=localhost -jar target/ola.jar --server.port=8181
+
+Curl testing
+
+       curl -i -X GET http://localhost:8181/api/ola-chaining/
